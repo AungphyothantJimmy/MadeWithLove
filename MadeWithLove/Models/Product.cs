@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MadeWithLove.Data.Enum;
+using System.ComponentModel.DataAnnotations;
 
 namespace MadeWithLove.Models
 {
