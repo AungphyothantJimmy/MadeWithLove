@@ -1,5 +1,7 @@
 ﻿using MadeWithLove.Data;
+using MadeWithLove.Data.Enum;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MadeWithLove.Controllers
 {
@@ -11,11 +13,31 @@ namespace MadeWithLove.Controllers
         {
             _context = context;
         }
-        
-        public async Task<IActionResult> Index()
+
+        public async Task<IActionResult> Index(string category, bool sales = false)
         {
-            var allProducts = _context.Products.ToList();
-            return View(allProducts);
+            var products = _context.Products.AsQueryable();
+
+            if (!string.IsNullOrEmpty(category) &&
+                Enum.TryParse<ProductCategory>(category, out var parsedCategory))
+            {
+                products = products.Where(p => p.ProductCategory == parsedCategory);
+            }
+
+            if (sales)
+            {
+                products = products.Where(p => p.IsOnSale);
+            }
+
+            var productList = await products.ToListAsync();
+            return View(productList);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
     }
 }

@@ -32,7 +32,8 @@ namespace MadeWithLove.Data
                             ProductName = "TestItem2",
                             ProductDescription = "This is the description of TestItem2",
                             ImageURL = "https://d3vfig6e0r0snz.cloudfront.net/rcYjnYuenaTH5vyDF/images/products/ce6327ee0687139d93608e6ac31d2a1c.webp",
-                            ProductCategory = ProductCategory.Clothings
+                            ProductCategory = ProductCategory.Clothings,
+                            IsOnSale = true,
                         },
 
                         new Product()
@@ -64,7 +65,8 @@ namespace MadeWithLove.Data
                             ProductName = "TestItem6",
                             ProductDescription = "This is the description of TestItem6",
                             ImageURL = "https://thesilverstore.com.au/cdn/shop/files/engrvaed-gold-bar-barcelet.jpg?v=1713750486",
-                            ProductCategory = ProductCategory.Accessories
+                            ProductCategory = ProductCategory.Accessories,
+                            IsOnSale= true
                         },
 
                     });
