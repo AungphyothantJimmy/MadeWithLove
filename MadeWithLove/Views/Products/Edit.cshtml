@@ -2,13 +2,15 @@
 @using MadeWithLove.Data.Enum
 
 @{
-    ViewData["Title"] = "Add New Product";
+    ViewData["Title"] = "Edit the Product";
 }
 
 <div class="container py-4">
     <h2 class="mb-4 text-center text-primary">@ViewData["Title"]</h2>
 
-    <form asp-action="Create" method="post" class="needs-validation" novalidate>
+    <form asp-action="Edit" method="post" class="needs-validation" novalidate>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
         <div class="mb-3">
             <label asp-for="ProductName" class="form-label"></label>
             <input asp-for="ProductName" class="form-control" />
@@ -48,7 +50,7 @@
 
         <div>
             <a class="btn btn-outline-secondary me-2" asp-action="Index">Show All</a>
-            <input type="submit" value="Create" class="btn btn-outline-success" />
+            <input type="submit" value="Update" class="btn btn-outline-success" />
         </div>
     </form>
 </div>

@@ -1,12 +1,17 @@
 using MadeWithLove.Data;
+using MadeWithLove.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // AppDbContext Configuration
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Services Configuration
+builder.Services.AddScoped<IProductsService, ProductsService>();
 
 var app = builder.Build();
 

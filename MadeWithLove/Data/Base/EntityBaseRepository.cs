@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Linq.Expressions;
 
 namespace MadeWithLove.Data.Base
 {
@@ -19,7 +20,8 @@ namespace MadeWithLove.Data.Base
             entityEntry.State = EntityState.Modified;
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync() => await _context.Set<T>().ToListAsync();
+
+        public Task<IQueryable<T>> GetAllAsync() => Task.FromResult(_context.Set<T>().AsQueryable());
 
         public async Task<T> GetByIdAsync(int id) => await _context.Set<T>().FirstOrDefaultAsync(n => n.Id == id);
 
@@ -28,5 +30,6 @@ namespace MadeWithLove.Data.Base
             EntityEntry entityEntry = _context.Entry(entity);
             entityEntry.State = EntityState.Modified;
         }
+
     }
 }
