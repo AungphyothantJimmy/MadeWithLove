@@ -4,6 +4,5 @@
     {
         Accessories = 1,
         Clothings,
-        Sales
     }
 }
