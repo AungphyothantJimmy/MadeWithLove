@@ -36,6 +36,18 @@ namespace MadeWithLove.Controllers
             return View(allProducts);
         }
 
+        public async Task<IActionResult> Filter(string searchString)
+        {
+            var allProducts = await _service.GetAllAsync();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                var filteredResults = allProducts.Where(n => n.ProductName.Contains(searchString) ||  n.ProductDescription.Contains(searchString)).ToList();
+                return View("Index",filteredResults);
+            }
+
+            return View("Index", allProducts);
+        }
 
         // Get: Products/Details/1
         public async Task<IActionResult> Details(int id)
